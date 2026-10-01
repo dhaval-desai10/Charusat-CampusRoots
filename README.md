@@ -1,0 +1,188 @@
+# 🎓 CampusRoots — Alumni & Student Networking Platform
+
+<p align="center">
+  <strong>A modern, full-stack community and networking platform built exclusively for CHARUSAT University students, alumni, and faculty.</strong>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React" />
+  <img src="https://img.shields.io/badge/Node.js-18+-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js" />
+  <img src="https://img.shields.io/badge/Express-4.21-000000?style=for-the-badge&logo=express&logoColor=white" alt="Express" />
+  <img src="https://img.shields.io/badge/MongoDB-Mongoose-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB" />
+  <img src="https://img.shields.io/badge/Socket.io-Realtime-010101?style=for-the-badge&logo=socketdotio&logoColor=white" alt="Socket.io" />
+  <img src="https://img.shields.io/badge/TailwindCSS-3.4-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind" />
+</p>
+
+---
+
+## 🌟 Overview
+
+**CampusRoots** bridges the gap between students, alumni, and faculty members of CHARUSAT. It provides a centralized space for networking, reunion management, internship recruitment, campus memory galleries, and alumni donations — all secured with enterprise-grade **Role-Based Access Control (RBAC)**.
+
+---
+
+## ✨ Key Features
+
+### 🛡️ Enterprise RBAC (Role-Based Access Control)
+- **Role Detection**: Automatically derives user role (`student`, `alumni`, `faculty`) directly from their institutional email domain (`@charusat.edu.in` and `@charusat.ac.in`).
+- **Centralized Constants**: Codebase enforced with a single source of truth across server, client, and admin (`ROLES` and `MODULES`).
+- **Dynamic Admin Matrix**: Administrators can toggle module permissions on/off in real-time from the Admin portal.
+
+### 👥 User Roles & Capabilities
+| Role | Capabilities |
+| :--- | :--- |
+| 🎓 **Student** | Browse alumni network, apply for internships, view feed & gallery, chat with connections |
+| ⭐ **Alumni** | Post job/internship openings, donate & contribute, share feedbacks, post updates |
+| 👨‍🏫 **Faculty** | Propose & organize reunions, interact with alumni, monitor student-alumni network |
+| 🛡️ **Admin** | Full system moderation, dynamic RBAC permission toggling, user management, analytics |
+
+### 🚀 Core Modules
+- **📰 Social Feed**: Share campus moments, celebrate achievements, interact with likes, comments, and mentions.
+- **📅 Reunions & Events**: Organize batch reunions, RSVP, track attendees, and coordinate venues or virtual meetups.
+- **💼 Internship Portal**: Alumni post opportunities with stipend details; students apply with their resumes.
+- **📸 Campus Gallery**: High-resolution memories and event galleries powered by Cloudinary.
+- **💬 Real-Time Messaging**: 1-on-1 direct messaging and group chats powered by Socket.io.
+- **💖 Contributions & Giving**: Secure donation system with Stripe payment integration and public donor acknowledgments.
+- **🌓 Dynamic UI**: Full Light & Dark mode support with customized design tokens.
+
+---
+
+## 🏗️ Project Architecture
+
+```
+CampusRoots/
+├── client/                     # Student & Alumni Web App (React + Vite + Tailwind)
+│   ├── src/
+│   │   ├── components/         # Reusable UI widgets & Navbar
+│   │   ├── constants/          # Frontend RBAC Constants (ROLES, MODULES)
+│   │   ├── context/            # AuthContext, PermissionContext, ThemeContext
+│   │   ├── pages/              # Feed, Reunions, Gallery, Internships, Network, Chat
+│   │   └── App.jsx             # Permission-guarded routes
+│   └── package.json
+│
+├── server/                     # Backend REST API & Real-time Server (Node + Express)
+│   ├── config/                 # Database, Cloudinary, and Passport configs
+│   ├── constants/              # Backend RBAC Constants (Single Source of Truth)
+│   ├── controllers/            # Business logic for all modules
+│   ├── middleware/             # Authentication & RBAC permission guards
+│   ├── models/                 # Mongoose schemas (User, RolePermission, Post, etc.)
+│   ├── routes/                 # Protected REST routes
+│   └── index.js                # Server entry point + Socket.io gateway
+│
+└── admin/                      # Dedicated Admin Dashboard (React + Vite + Tailwind)
+    ├── src/
+    │   ├── constants/          # Admin RBAC definitions
+    │   ├── pages/              # RBAC Matrix, Users, Posts, Reunions, Donations
+    │   └── components/         # Admin Layout & Analytics widgets
+    └── package.json
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- **Node.js** (v18.0 or higher)
+- **MongoDB** (Local instance or MongoDB Atlas)
+- **Git**
+
+---
+
+### 2. Installation & Setup
+
+#### Step 1: Clone the repository
+```bash
+git clone https://github.com/dhaval-desai10/CampusRoots.git
+cd CampusRoots
+```
+
+#### Step 2: Backend Setup (`server`)
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file in the `server/` directory:
+```env
+PORT=5000
+DB_URL=mongodb://127.0.0.1:27017/campusroots
+JWT_SECRET=your_jwt_secret_key
+JWT_EXPIRES_IN=7d
+
+# Google OAuth (Optional / Local Auth available)
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+
+# URLs & Session
+CLIENT_URL=http://localhost:5173
+SESSION_SECRET=your_session_secret_key
+
+# Cloudinary (Profile Pictures & Gallery)
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+
+# Fixed Admin Credentials
+ADMIN_USERNAME=admin
+ADMIN_PASSWORD=CampusRoots@2024
+```
+
+Start the backend:
+```bash
+npm run dev
+```
+*Backend runs on `http://localhost:5000`*
+
+---
+
+#### Step 3: Frontend Client Setup (`client`)
+In a new terminal window:
+```bash
+cd client
+npm install
+npm run dev
+```
+*Client web app runs on `http://localhost:5173`*
+
+---
+
+#### Step 4: Admin Portal Setup (`admin`)
+In a new terminal window:
+```bash
+cd admin
+npm install
+npm run dev
+```
+*Admin panel runs on `http://localhost:5174`*
+
+---
+
+## 🔒 Security & RBAC Configuration
+
+CampusRoots implements a multi-layer defense strategy:
+1. **Institutional Domain Lockdown**: Registration is strictly allowed for `@charusat.edu.in` and `@charusat.ac.in` domains.
+2. **Deterministic Role Calculation**: Admission year extracted from student IDs determines student vs. alumni status automatically.
+3. **Route Protection**: All sensitive endpoints pass through `isAuthenticated` and `requirePermission(MODULES.<NAME>)`.
+4. **Fail-Safe Invalidation**: Missing or unknown permissions default to `403 Access Denied`.
+
+---
+
+## 🛠️ Tech Stack Summary
+
+- **Frontend**: React 19, Vite, Tailwind CSS, Lucide React, Axios
+- **Backend**: Node.js, Express.js, Socket.io, Passport.js, JWT, Bcrypt
+- **Database**: MongoDB & Mongoose ORM
+- **Cloud Storage**: Cloudinary (Photos, media, resumes)
+- **Payments**: Stripe Payment Intent API
+
+---
+
+## 📄 License
+
+This project is licensed under the **ISC License**.
+
+---
+
+<p align="center">
+  Made with ❤️ for the <strong>CHARUSAT</strong> Community
+</p>
