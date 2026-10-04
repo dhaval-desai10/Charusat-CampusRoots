@@ -1,0 +1,154 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+
+  /* CampusRoots Light Mode Colors */
+  --primary-blue: #1f3a5f;
+  --accent-orange: #f4a261;
+  --background: #f9fafb;
+  --card-bg: #ffffff;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --border: #e5e7eb;
+
+  --foreground: var(--text-primary);
+  --primary: var(--primary-blue);
+  --primary-foreground: #ffffff;
+  --secondary: #f3f4f6;
+  --secondary-foreground: var(--text-primary);
+  --muted: #f3f4f6;
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--accent-orange);
+  --accent-foreground: #ffffff;
+  --destructive: #ef4444;
+  --destructive-foreground: #ffffff;
+  --input: var(--border);
+  --ring: var(--primary-blue);
+  --chart-1: var(--primary-blue);
+  --chart-2: var(--accent-orange);
+  --chart-3: #10b981;
+  --chart-4: #8b5cf6;
+  --chart-5: #f59e0b;
+  --sidebar: var(--card-bg);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--primary-blue);
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: var(--accent-orange);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary-blue);
+  --card: var(--card-bg);
+  --card-foreground: var(--text-primary);
+  --popover: var(--card-bg);
+  --popover-foreground: var(--text-primary);
+}
+
+.dark {
+  /* CampusRoots Dark Mode Colors */
+  --primary-blue: #4f8cc9;
+  --accent-orange: #f6ad55;
+  --background: #0b1220;
+  --card-bg: #111827;
+  --text-primary: #e5e7eb;
+  --text-secondary: #9ca3af;
+  --border: #1f2937;
+
+  --foreground: var(--text-primary);
+  --primary: var(--primary-blue);
+  --primary-foreground: #0b1220;
+  --secondary: #1f2937;
+  --secondary-foreground: var(--text-primary);
+  --muted: #1f2937;
+  --muted-foreground: var(--text-secondary);
+  --accent: var(--accent-orange);
+  --accent-foreground: #0b1220;
+  --destructive: #f87171;
+  --destructive-foreground: #ffffff;
+  --input: var(--border);
+  --ring: var(--primary-blue);
+  --chart-1: var(--primary-blue);
+  --chart-2: var(--accent-orange);
+  --chart-3: #34d399;
+  --chart-4: #a78bfa;
+  --chart-5: #fbbf24;
+  --sidebar: var(--card-bg);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--primary-blue);
+  --sidebar-primary-foreground: var(--text-primary);
+  --sidebar-accent: var(--accent-orange);
+  --sidebar-accent-foreground: #0b1220;
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--primary-blue);
+  --card: var(--card-bg);
+  --card-foreground: var(--text-primary);
+  --popover: var(--card-bg);
+  --popover-foreground: var(--text-primary);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html,
+  body,
+  #root {
+    @apply w-full h-full m-0 p-0;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
